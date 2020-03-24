@@ -19,6 +19,31 @@ proxyData(data) {
   })
 }
 ```
+2. 劫持data数据，为data内的数据添加get和set，并为每个数据创建一个订阅器对象dep
+```js
+observe(data) {
+  if (typeof data === "object")
+    Object.keys(data).forEach(key => {
+      this.proxyData(data, key, data[key])
+    })
+}
+proxyData(data, key, value) {
+  this.observe(value)
+  let dep = new Dep(key)
+  Object.defineProperty(data, key, {
+    get() {
+      if (Dep.target) dep.addSub(Dep.target)
+      return value
+    },
+    set(newValue) {
+      if (value !== newValue) {
+        value = newValue
+        dep.notify(newValue)
+      }
+    }
+  })
+```
+3. 编译
 
 
 ### 功能
