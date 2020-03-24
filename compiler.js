@@ -63,7 +63,7 @@ CompileUtil = {
     let value = this.getValue(exp, vm)
     UpdataUtil[dir](node, value, exp, vm)
     new Watcher(exp, vm, (newValue) => {
-      UpdataUtil[dir](node, newValue)
+      UpdataUtil[dir](node, newValue, exp, vm)
     })
   },
   eventDirective(node, dir, exp, vm) {
@@ -71,9 +71,7 @@ CompileUtil = {
     node.addEventListener(dir, methods[exp].bind(vm))
   },
   getValue(exp, vm) {
-    return exp.split('.').reduce((data, next) => {
-      return data[next]
-    }, vm.$data)
+    return exp.split('.').reduce((data, next) => data[next], vm.$data)
   }
 }
 UpdataUtil = {
