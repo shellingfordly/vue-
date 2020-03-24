@@ -1,5 +1,9 @@
 ## vue-mini-library
-实现vue的基础数据双向数据绑定功能
+vue微型库，实现vue的小部分基础功能
+
+
+### 参考项目
+[DMQ/mvvm](https://github.com/DMQ/mvvm)
 
 ### 过程
 
@@ -94,5 +98,3 @@ upData(newValue) {
 * 鼠标移入移出等等
 
 
-### 参考项目
-[DMQ/mvvm](https://github.com/DMQ/mvvm)
