@@ -70,9 +70,8 @@ CompileUtil = {
     const methods = vm.$options.methods
     node.addEventListener(dir, methods[exp].bind(vm))
   },
-  getValue(exp, vm) {
-    return exp.split('.').reduce((data, next) => data[next], vm.$data)
-  }
+  getValue: (exp, vm) => exp.split('.').reduce((data, next) => data[next], vm.$data)
+
 }
 UpdataUtil = {
   text(node, value) {
