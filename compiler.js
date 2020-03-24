@@ -61,7 +61,7 @@ class Compiler {
 CompileUtil = {
   disEventDirective(node, dir, exp, vm) {
     let value = this.getValue(exp, vm)
-    UpdataUtil[dir](node, value)
+    UpdataUtil[dir](node, value, exp, vm)
     new Watcher(exp, vm, (newValue) => {
       UpdataUtil[dir](node, newValue)
     })
@@ -83,13 +83,17 @@ UpdataUtil = {
   html(node, value) {
     node.innerHTML = value
   },
-  class() {
-    console.log("class")
+  class(node, value) {
+    if (!node.classList.contains(value))
+      node.classList.add(value)
   },
-  model() {
-    console.log("model")
+  model(node, value, exp, vm) {
+    node.value = value
+    node.addEventListener('input', () => {
+      vm[exp] = node.value
+    })
   },
-  href() {
-    console.log("href")
+  href(node, value) {
+    node.href = value
   }
 }

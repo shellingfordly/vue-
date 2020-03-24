@@ -5,9 +5,7 @@ class MyVue {
     this.$el = this.isElementNode(options.el) ? options.el : document.getElementById(options.el)
     this.proxyData(data)
     new Observe(options)
-    console.time('1')
     new Compiler(this)
-    console.timeEnd('1')
   }
   isElementNode(node) {
     return node.nodeType === 1

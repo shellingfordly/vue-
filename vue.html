@@ -16,14 +16,18 @@
 
 <body>
   <div id="#app">
-    测试msg数据更新------{{msg}}
+    msg数据------{{msg}}
     <p>{{msg}}</p>
     <p id="ppp" v-text="testStr" class="aaa" name="aaa" title='p'></p>
     <button @click="handleClick">点击</button>
-    <p v-html="htmlStr" @dblclick="handleDbclick"></p>
+    <button @dblclick="handleDbclick">双击</button>
+    <p v-html="htmlStr"></p>
     <div id="box" @mouseenter="mouseenter" @mouseleave="mouseleave">
       {{obj.a}}
     </div>
+    <input type="text" v-model="modelStr">
+    <p>a标签：<a v-href="hrefStr">vue-mini-library</a></p>
+    <div v-class="className" class="a b c">检测v-class：{{className}}</div>
   </div>
 
   <script src="./myvue.js"></script>
@@ -36,27 +40,28 @@
       data: {
         msg: "我是msg",
         obj: {
-          a: "我是obj.a"
+          a: "鼠标移入此处"
         },
+        className: "box",
         testStr: "我是testStr",
-        htmlStr: "<span>我是htmlStr</span>"
+        htmlStr: "<span>我是htmlStr</span>",
+        modelStr: "v-model绑定数据",
+        hrefStr: "https://github.com/shellingfordly/vue-mini-library"
       },
       methods: {
         handleClick() {
-          this.msg = "我是msg，更新后的数据"
-          this.testStr = "我是testStr，更新后的数据"
+          this.msg = "被点击更新的msg数据"
+          this.testStr = "被点击更新的testStr数据"
         },
         handleDbclick() {
-          this.msg = "我是msg，二次更新后的数据"
-          this.htmlStr = "<span>我是htmlStr，更新后的数据</span>"
-
-          console.log("双击了")
+          this.msg = "被双击更新的msg数据"
+          this.htmlStr = "<span>被双击更新的htmlStr数据</span>"
         },
         mouseenter() {
-          this.obj.a = "鼠标移入了"
+          this.obj.a = "移入了鼠标"
         },
         mouseleave() {
-          this.obj.a = "鼠标移出了"
+          this.obj.a = "移出了鼠标"
         }
       },
     })
