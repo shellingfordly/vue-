@@ -1,5 +1,5 @@
 ## vue-mini-library
-vue微型库，实现vue的小部分基础功能
+vue微型库仿写，实现vue的小部分基础功能
 
 
 ### 参考项目
